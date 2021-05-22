@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="alert alert-primary" role="alert">
+        <h3>社内sns</h3>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <!-- {% if user.is_authenticated %} -->
+        <body>
+            <div class="div container">
+                <div class="alert alert-success" role="alert">
+                    <p>タイトル:{{ object.title }}</p>
+                    <p>投稿者:{{ object.author }}</p>
+                    {% if object.snsimage.url %}
+                        <p><img src="{{ object.snsimage.url }}" width="100" height="100"/></p>
+                    {% endif %}
+                        <a href="{% url 'good' object.pk %}" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">いいね{{ object.good }}</a>
+                        <a href="{% url 'read' object.pk %}" class="btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">既読{{ object.read }}</a>
+                </div>
+                <a href="{% url 'logout' %}">ログアウト</a>
+            </div>
+        </body>
+    <!-- {% else %} -->
+        <p>hello</p>
+    <!-- {% endif %} -->
+{% endblock content %}

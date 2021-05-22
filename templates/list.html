@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <div class="alert alert-primary" role="alert">
+        <h3>社内sns</h3>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <body>
+            <div class="div container">
+                {% for o in object_list %}
+                <div class="alert alert-success" role="alert">
+                    <p>タイトル:<a href="{% url 'detail' o.pk %}">{{ o.title }}</a></p>
+                    <p>投稿者:{{ o.author }}</p>
+                    <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">いいねする{{ o.good }}</a>
+                    <a href="#" class="btn btn-secondary" tabindex="-1" role="button" aria-disabled="true">既読{{ o.read }}</a>
+                </div>
+                {% endfor %}
+                <a href="{% url 'logout' %}">ログアウト</a>
+            </div>
+        </body>
+    {% else %}
+        <p>hello</p>
+    {% endif %}
+{% endblock content %}
